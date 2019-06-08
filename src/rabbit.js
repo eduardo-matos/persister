@@ -6,11 +6,11 @@ const e = encodeURIComponent;
 module.exports = (consumer) => new Promise(async (resolve, reject) => {
   const conn = await amqp.connect(`amqp://${e(config.RABBITMQ_USER)}:${e(config.RABBITMQ_PASS)}@${e(config.RABBITMQ_HOST)}:${config.RABBITMQ_PORT}/${e(config.RABBITMQ_VHOST)}`)
   const channel = await conn.createChannel();
-  await channel.assertQueue(config.QUEUE_NAME);
+  await channel.assertQueue(config.SOURCE_QUEUE_NAME);
 
-  await channel.prefetch(1);
+  await channel.prefetch(config.CONCURRENCY);
 
-  channel.consume(config.QUEUE_NAME, async (rawMsg) => {
+  channel.consume(config.SOURCE_QUEUE_NAME, async (rawMsg) => {
     if (rawMsg !== null) {
       const msg = JSON.parse(rawMsg.content.toString());
 
