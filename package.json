@@ -1,0 +1,14 @@
+{
+  "name": "persister",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gets message from RabbitMQ and saves it in MongoDB",
+  "author": "Eduardo Matos",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "amqplib": "0.5.3",
+    "mongodb": "3.2.7"
+  }
+}
