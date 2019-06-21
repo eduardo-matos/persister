@@ -9,7 +9,7 @@ async function main() {
     await slowProcess();
 
     if (error()) {
-      throw new Error('An unexpected error occurred');
+      throw new Error('A simulated error occurred');
     }
 
     return new Promise(async (resolve, reject) => {
