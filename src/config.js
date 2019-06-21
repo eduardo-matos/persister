@@ -12,5 +12,5 @@ module.exports.RABBITMQ_PASS = process.env.RABBITMQ_PASS || 'guest';
 module.exports.RABBITMQ_VHOST = process.env.RABBITMQ_VHOST || '/';
 
 module.exports.MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017';
-module.exports.MONGODB_DATABASE = process.env.MONGODB_DATABASE || 'persister';
-module.exports.MONGODB_COLLECTION = process.env.MONGODB_COLLECTION || 'events';
+module.exports.MONGODB_DATABASE_NAME = process.env.MONGODB_DATABASE_NAME || 'persister';
+module.exports.MONGODB_COLLECTION_NAME = process.env.MONGODB_COLLECTION_NAME || 'events';

@@ -3,13 +3,13 @@ const rabbit = require('./rabbit');
 const config = require('./config');
 
 async function main() {
-  await rabbit(async (msg) => {
-    const collection = await mongo; 
+  const collection = await mongo;
 
+  rabbit(async (msg) => {
     await slowProcess();
 
     if (error()) {
-      return reject(new Error('An unexpected error occurred'));
+      throw new Error('An unexpected error occurred');
     }
 
     return new Promise(async (resolve, reject) => {

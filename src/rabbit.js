@@ -3,7 +3,7 @@ const config = require('./config');
 
 const e = encodeURIComponent;
 
-module.exports = (consumer) => new Promise(async (resolve, reject) => {
+module.exports = async (consumer) => {
   const conn = await amqp.connect(`amqp://${e(config.RABBITMQ_USER)}:${e(config.RABBITMQ_PASS)}@${e(config.RABBITMQ_HOST)}:${config.RABBITMQ_PORT}/${e(config.RABBITMQ_VHOST)}`)
   const channel = await conn.createChannel();
   await channel.assertQueue(config.SOURCE_QUEUE_NAME);
@@ -19,9 +19,9 @@ module.exports = (consumer) => new Promise(async (resolve, reject) => {
         console.log(`Inserted Id="${result.insertedId}"`);
         channel.ack(rawMsg);
       } catch (err) {
-        console.error(`Failed to insert "${JSON.stringify(msg)}"`);
+        console.error(`Failed to insert "${JSON.stringify(msg)}"`, err);
         channel.nack(rawMsg, false, true);
       }
     }
   });
-});
+};
